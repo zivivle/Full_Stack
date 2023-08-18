@@ -1,6 +1,6 @@
-
 <h1 align="middle">HTML, CSS를 이용해서 넷플릭스 사이트 만들기</h1>
 </p><br>
+
 
 <div align="center">
   
@@ -8,11 +8,14 @@
 
  <p align="middle">HTML, CSS 활용하여 최종 이미지에 맞는 넷플릭스 사이트 구현하기 </p>
 
+ <img align="center" src="https://github.com/zivivle/Full_Stack/assets/123868471/46636583-f88a-4971-9f5c-e7adb56c98c6">
+
 </div><br>
 
 <details>
 <summary><h2>📂 파일 구조</h2></summary>
 <div markdown="1">
+
 
 ```
 ├─img
