@@ -12,7 +12,7 @@
 
 </div><br>
 
-<details>
+<details open>
 <summary><h2>📂 파일 구조</h2></summary>
 <div markdown="1">
 
@@ -39,7 +39,7 @@
 
 <h2>✔️ 요구사항 구현 내용</h2>
 
-<details>
+<details open>
 <summary> 1. 최종 결과물 참고용 이미지대로 구현</summary>
 <div markdown="1">
   <br>
@@ -50,7 +50,7 @@
 
 </div>
 </details>
-<details>
+<details open>
 <summary> 2. Flex Box를 이용하여 영화를 나열하기 </summary>
 <div markdown="1">
 <br>
@@ -66,7 +66,7 @@
     
 </div>
 </details>
-<details>
+<details open>
 <summary> 3. 영화에 마우스를 호버 하면 영화 이미지의 크기가 크게 변경될 수 있도록 하기</summary>
 <div markdown="1">
 <br>
