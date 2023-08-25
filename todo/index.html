@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- modal-box에 hidden 클래스 넣고 완료 -->
+    <div class="containerbox">
+      <div class="overlay hidden"></div>
+      <div class="modal-box hidden">
+        <img id="x-mark" src="/Full_Stack/todo/img/x-mark.png" />
+        <div class="modal-input">
+          <input id="todo-input" type="text" placeholder="Add your text !" />
+        </div>
+        <div class="enter-box">
+          <img id="enter-icon" src="/Full_Stack/todo/img/enter.png" />
+        </div>
+      </div>
+      <div class="container">
+        <div id="title-box">
+          <h2>Todos App</h2>
+          <button id="add-button" type="button">NEW TODO</button>
+        </div>
+        <div class="main-box">
+          <div class="empty-data">
+            <img id="ghost" src="/Full_Stack/todo/img/nodata.jpg" />
+            <p id="no-data">todo list가 없어요?!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
