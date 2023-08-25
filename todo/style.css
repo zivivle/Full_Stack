@@ -139,7 +139,7 @@ body {
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  background-image: url(/Full_Stack/todo/img/uncheck.png);
+  background-image: url(/todo/img/uncheck.png);
   background-size: cover;
   background-position: center;
   top: 0px;
@@ -152,7 +152,7 @@ body {
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  background-image: url(/Full_Stack/todo/img/check.png);
+  background-image: url(/todo/img/check.png);
   background-size: cover;
   background-position: center;
   top: 0px;

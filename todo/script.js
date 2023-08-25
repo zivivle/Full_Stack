@@ -79,8 +79,8 @@ function updateUI(task) {
                 <input type="text" class="todo-input hidden" value="${task.text}" />           
               </div>           
               <div>             
-                <img id="edit-icon" src="/Full_Stack/todo/img/edit.png" />             
-                <img id="x-icon" src="/Full_Stack/todo/img/x-mark.png" />           
+                <img id="edit-icon" src="/todo/img/edit.png" />             
+                <img id="x-icon" src="/todo/img/x-mark.png" />           
               </div>         
             </div>`;
   todoBox[0].insertAdjacentHTML('beforeend', tem);
@@ -141,7 +141,7 @@ function editTask(event) {
   if (todoEditInput.classList.contains('hidden')) {
     todoText.classList.add('hidden');
     todoEditInput.classList.remove('hidden');
-    editButton.src = '/Full_Stack/todo/img/save.png';
+    editButton.src = '/todo/img/save.png';
   } else {
     // localStorage 업데이트
     let todos = JSON.parse(localStorage.getItem('todos'));
@@ -153,7 +153,7 @@ function editTask(event) {
     todoText.innerText = todoEditInput.value;
     todoText.classList.remove('hidden');
     todoEditInput.classList.add('hidden');
-    editButton.src = '/Full_Stack/todo/img/edit.png';
+    editButton.src = '/todo/img/edit.png';
   }
 }
 
@@ -162,7 +162,7 @@ function deleteTask(event) {
   const deleteButton = event.target;
   const todoItem = deleteButton.closest('.main-list-box');
   const todoId = parseInt(todoItem.dataset.id);
-  const isConfirmed = confirm('정말루 삭제할꼬야?');
+  const isConfirmed = confirm('정말로 삭제하시겠습니까?');
   if (isConfirmed) {
     // localStorage 업데이트
     let todos = JSON.parse(localStorage.getItem('todos'));
