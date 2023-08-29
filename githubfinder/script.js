@@ -43,7 +43,7 @@ class GithubUser {
       this.displayUserInfo(data);
     } catch (error) {
       if (error.message === 'User not found') {
-        this.showDefaultUserInfo();
+        this.showDefaultUserInfo(searchValue);
       }
     } finally {
       this.hideSpinner();
@@ -97,8 +97,8 @@ class GithubUser {
     document.getElementById('errorBox').style.display = 'none';
   }
 
-  showDefaultUserInfo() {
-    const message = `🤔 "${this.searchInput.value}" is not registered`;
+  showDefaultUserInfo(searchValue) {
+    const message = `🤔 "${searchValue}" is not registered`;
     const errorBox = document.getElementById('errorBox');
 
     const elementsToHide = [
