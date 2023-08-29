@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="header">Github Finder</header>
+    <div id="mainContainer">
+      <div class="searchBox borderBox">
+        <h1 class="mainText softBlackFont flexCenter">Search GitHub Users</h1>
+        <p class="greyFont flexCenter">Enter a username to fetch a user profile and repos</p>
+        <input class="searchInput flexCenter" placeholder="검색할 username을 입력해주세요" />
+      </div>
+      <div id="spinner">
+        <img src="./img/spinner.gif" alt="Loading..." style="display: block; margin: 0 auto" />
+      </div>
+      <div class="borderBox flexCenter emptyText" id="errorBox" style="display: none"></div>
+      <div class="borderBox profileBox flexCenter">
+        <div class="flexColumn">
+          <img id="userImg" src="./img/KakaoTalk_Photo_2023-08-28-21-56-23.png" alt="userImage" width="140px" />
+          <button class="profileBtn blue">View Profile</button>
+        </div>
+        <div class="infoBox">
+          <div class="tags tagBox flexRow">
+            <div class="tag1 blue">Public Repos:</div>
+            <div class="tag2 grey">Public Gists:</div>
+            <div class="tag3 green">Followers:</div>
+            <div class="tag4 pink">Following:</div>
+          </div>
+          <div class="infoTexts softBlackFont">
+            <div class="info1 infoBorderBox">Company:</div>
+            <div class="info2 infoBorderBox">Website & Blog:</div>
+            <div class="info3 infoBorderBox">Location:</div>
+            <div class="info4 infoBorderBox">Member Since:</div>
+          </div>
+        </div>
+      </div>
+      <div class="ghchart hidden">
+        <h4 class="subTitle2 flexCenter">Git Contribution</h4>
+        <img id="ghchartImg" src="https://ghchart.rshah.org/zivivle" />
+      </div>
+      <h2 class="subTitle softBlackFont flexCenter">Lastest Repos</h2>
+      <div id="repoContainer"></div>
+    </div>
+    <footer id="footer">Github Finder ⓒ</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
