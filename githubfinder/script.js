@@ -7,7 +7,6 @@ class GithubUser {
     this.searchInput = document.querySelector('.searchInput');
     this.spinnerIcon = document.getElementById('spinner');
     this.ghchartForm = document.getElementsByClassName('ghchart')[0];
-
     this.initEventListeners();
   }
 
@@ -21,6 +20,31 @@ class GithubUser {
         this.searchInput.value = '';
       }
     });
+    this.searchInput.addEventListener('input', () => {
+      this.validateInput(this.searchInput.value);
+    });
+    this.searchInput.addEventListener('blur', () => {
+      this.clearValidationMessage();
+    });
+  }
+
+  validateInput(value) {
+    const validationMessage = document.getElementById('validationMessage');
+    if (!value.match(/^[a-zA-Z0-9\-_]+$/)) {
+      validationMessage.textContent = '올바른 형식의 닉네임을 입력해주세요';
+      validationMessage.style.color = 'red';
+    } else if (value.length > 39) {
+      validationMessage.textContent = '닉네임이 너무 깁니다. 다시 입력해주세요';
+      validationMessage.style.color = 'red';
+    } else {
+      validationMessage.textContent = '올바른 닉네임 형식입니다.';
+      validationMessage.style.color = 'green';
+    }
+  }
+
+  clearValidationMessage() {
+    const validationMessage = document.getElementById('validationMessage');
+    validationMessage.textContent = '';
   }
 
   async fetchUserInfo(token, searchValue) {
