@@ -1,0 +1,61 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Helvetica;
+  box-sizing: border-box;
+}
+
+.cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  background: transparent;
+}
+
+.cell-input:focus {
+  outline: none;
+}
+
+table td.highlight {
+  background-color: #dcdcdc;
+}
+
+table th.highlight {
+  background-color: #dcdcdc;
+}
+
+table {
+  width: 95vw;
+  margin: 10px auto;
+  table-layout: fixed;
+}
+
+th {
+  width: 30px; /* th의 너비를 30px로 설정 */
+  background-color: honeydew;
+}
+
+td:first-child {
+  font-weight: 600;
+  background-color: honeydew;
+}
+
+table,
+td,
+th {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  font-size: 10px;
+  height: 30px;
+  padding: 0 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+#container {
+  margin: 20px;
+}
