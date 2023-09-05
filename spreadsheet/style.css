@@ -5,6 +5,24 @@
   box-sizing: border-box;
 }
 
+#mainHead {
+  margin: 10px;
+}
+
+#exportExcel {
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: rgb(149, 174, 255);
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#exportExcel:hover {
+  background-color: rgb(85, 124, 253);
+}
+
 .cell-input {
   width: 100%;
   height: 100%;
