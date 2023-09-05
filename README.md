@@ -1,8 +1,5 @@
-<h1 align="middle">자바스크립트를 이용해서 github finder 앱 만들기</h1>
+<h1 align="middle">자바스크립트를 이용한 Spread Sheet 앱 만들기</h1>
 </p><br>
-
-
-<img align="center" src="https://github.com/zivivle/Full_Stack/assets/123868471/dc827f61-fc43-46ae-bffc-ec9dffe41a3c">
 
 
 <div align="center">
@@ -12,7 +9,7 @@
 
 
 
- <p align="middle">자바스크립트를 이용해서 github finder 앱을 만들어 보았습니다. </p>
+ <p align="middle">자바스크립트를 이용해서 Spread Sheet 앱을 만들어 보았습니다. </p>
 
 
  <img align="center" src="#">
@@ -25,9 +22,6 @@
 
 
 ```
-├─img
-│  └─사용 이미지파일들 저장
-│  
 ├─index.html
 ├─script.js
 ├─style.css
@@ -37,7 +31,7 @@
 </details>
 
 <br>
-<h2>개인 과제</h2>
+<h2>개인 프로젝트</h2>
 
 
  <img src="https://github.com/FrontEnd-Team3/movie-trailer-project/assets/123865139/663c4b42-dc55-4e95-8f02-c0424c1f92ec" width="118"> 
@@ -55,63 +49,51 @@
   <br>
   <br>
   
-<img width="612" alt="스크린샷 2023-08-29 오전 10 45 37" src="https://github.com/zivivle/Full_Stack/assets/123868471/4b4317c1-aef7-4eba-ae2a-855eb7d9460f">
+<img width="612" alt="스크린샷 2023-08-29 오전 10 45 37" src="https://lh4.googleusercontent.com/QEGbVCrNKZ_f937yLnQtjQ6U3J9IJkqdiKKzVqpBoPWZh05zFFTQQSHeaLEwNPM3uGTQmHt0jhCuC_-wQqSQX8R-qi0AjB8Eo3asgK6fRmd9hACNq1QhSBMJjKQ1Gi7YdU42Xt3jIKvXwDuAp3CdY7E">
 
 </div>
 </details>
 <details open>
-<summary> 2. 자바스크립트를 OOP를 이용해서 구현 </summary>
+<summary> 2. 셀에 포커스 시 해당 셀의 헤더를 하이라이트하는 기능 </summary>
 <div markdown="1">
 <br>
 <br>
   
 ```
-1. 캡슐화
-
-GitHub 사용자에 대한 다양한 정보와 관련된 메서드를 GithubUser 클래스의 내부에 포함하여 구현하였고 내부 데이터와 이 데이터를 조작하는 방법을 함께 캡슐화하여 외부로부터 데이터를 보호하였습니다.
-클래스 내의 변수들 (this.searchInput, this.spinnerIcon 등)은 내부 메서드에서만 접근 가능하며 외부에서는 직접적으로 접근할 수 없도록 하였습니다.
-
-2. 추상화
-
-클래스는 복잡한 로직을 내부에 숨기고 간단한 인터페이스만 노출되도록 하였습니다.
-예를 들어, fetchUserInfo 메서드는 API 요청, 에러 처리, 사용자 정보 표시 등의 여러 과정을 추상화하여 단 한 번의 메서드 호출로 처리할 수 있게 하였습니다.
-
-3. 모듈화
-
-여러 작은 메서드로 나누어 각 메서드는 하나의 구체적인 작업만을 수행하도록 하였습니다.
-예를 들어, showSpinner, hideSpinner, updateUserTags 등은 각자 특정 작업을 수행하도록 하였습니다.
-
-4. 단일 책임 원칙
-
-GithubUser 클래스는 GitHub 사용자에 관련된 모든 작업을 담당하고 있고,
-각 메서드도 최대한 하나의 기능만을 수행하도록 설계하였습니다.
+- updateFocusedCell 함수를 만들어 현재 포커스된 입력 필드를 기반으로 해당 셀의 위치를 확인하고 그에 따라 셀의 이름(예: A1, B2 등)을 표시했습니다.
+- 이 함수 내에서 highlightRowAndColumn 함수를 호출하여 해당 셀의 행과 열에 해당하는 헤더를 하이라이트했습니다.
+- highlightRowAndColumn 함수에서 특정 행과 열의 헤더를 가져와 highlight 클래스를 추가하여 스타일을 적용했습니다.
 
 ```
 </div>
 </details>
 
 <details open>
-<summary> 3. 비동기 통신을 이용합니다. </summary>
+<summary> 3. 스프레드시트의 데이터를 Excel 파일로 내보내는 기능 </summary>
 <div markdown="1">
 <br>
 <br>
   
 ```  
-- async/await 문법을 사용하여 비동기 처리를 하였습니다.
-fetchUserInfo, fetchUserRepos 에서 사용하였으며, async/await 문법을 사용해서 가독성있는 형태로 작성하려 노력하였습니다.
+- exportToExcel 함수로 웹페이지의 스프레드시트 데이터를 Excel 파일로 내보내는 기능을 처리했습니다.
+- prepareTableData 함수를 통해 각 셀의 입력 필드 값들을 텍스트로 변환했습니다.
+- XLSX 라이브러리의 함수들을 사용하여 테이블 데이터를 워크시트로 변환하고, 워크북에 워크시트를 추가한 다음, 이 워크북을 Excel 파일로 저장합니다.
 
 ```
 </div>
 </details>
 
 <details open>
-<summary> 4. 위에 기능 외에 잔디밭 기능, Spinner 기능 등 원하는 기능을 추가합니다. </summary>
+<summary> 4. 구글 스프레드시트에서 동일한 데이터가 나오도록 Excel 파일 생성 </summary>
 <div markdown="1">
 <br>
 <br>
   
 ```
-잔디밭 기능, Spinner 기능도 추가하여 구현하였습니다.
+- 이 부분에서 XLSX 라이브러리를 사용했습니다.
+- XLSX.utils.table_to_sheet 함수를 사용하여 웹페이지의 테이블 데이터를 워크시트 형식으로 변환할 수 있었고
+- 다시 XLSX.write 함수를 사용하여 Excel 파일로 저장하였습니다.
+- 생성된 Excel 파일을 구글 스프레드시트로 가져오면 웹페이지의 테이블 데이터와 동일한 데이터를 볼 수 있습니다.
 
 ```
 </div>
