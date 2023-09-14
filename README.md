@@ -7,9 +7,8 @@
 
  <p align="middle">리액트를 이용해서 CRUD 앱을 만들어 보았습니다. </p>
 
-</div><br>
+</div>
 
-<details open>
 <summary><h2>📂 파일 구조</h2></summary>
 <div markdown="1">
 
