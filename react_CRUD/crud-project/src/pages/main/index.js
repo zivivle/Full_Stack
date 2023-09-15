@@ -20,7 +20,7 @@ const Main = () => {
 		const newExpense = {
 			detail: expenseDetail,
 			cost: Number(expenseCost),
-			id: Date.now(),
+			id: `${Date.now()}${Math.random()}`,
 		};
 		const updatedExpenses = [...expenses, newExpense];
 		setExpenses(updatedExpenses);

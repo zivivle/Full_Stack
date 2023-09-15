@@ -11,7 +11,6 @@ const Input = ({
 		const inputValue = e.target.value;
 
 		if (isCost && !/^\d*$/.test(inputValue)) {
-			console.warn("숫자만 입력하쇼");
 			return;
 		}
 

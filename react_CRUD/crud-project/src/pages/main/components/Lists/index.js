@@ -35,22 +35,19 @@ const Lists = ({
 	};
 
 	const handleCompleteExpense = () => {
-		expense.detail = newExpenseDetail;
-		expense.cost = Number(newExpenseCost);
+		const updatedExpense = {
+			...expenses,
+			detail: newExpenseDetail,
+			cost: Number(newExpenseCost),
+		};
 		const updatedExpenses = expenses.map(exp => {
 			if (exp.id === expense.id) {
-				return expense;
+				return updatedExpense;
 			}
 			return exp;
 		});
-
-		// expenses 상태 업데이트
 		setExpenses(updatedExpenses);
-
-		// 총 지출 업데이트
 		handleTotalCost(updatedExpenses);
-
-		// 이벤트 설정
 		setEventColor("yellow");
 		setEventText("아이템이 수정되었습니다.");
 		setIsVisible(true);
