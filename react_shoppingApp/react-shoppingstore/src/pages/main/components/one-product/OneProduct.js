@@ -1,17 +1,30 @@
 import styled from "styled-components";
 import { flexCenter, flexColumn, flexRow } from "../../../../styles/common";
+import { useNavigate } from "react-router-dom";
 
-const OneProduct = ({ handleAddCart }) => {
+const OneProduct = ({ product, handleAddCart }) => {
+	const navigate = useNavigate();
+
+	const hadlePassProductData = () => {
+		navigate("/productDetail", { state: { selectedProduct: product } });
+	};
+
 	return (
 		<>
 			<S.ProductBox>
-				<img src="/img/hello.png" />
-				<S.ProductTitle>상품 이름</S.ProductTitle>
+				<img src={product?.image} onClick={hadlePassProductData} />
+				<S.ProductTitle onClick={hadlePassProductData}>
+					{product?.title}
+				</S.ProductTitle>
 				<S.SubButtonText>
-					<S.ProductCartButton onClick={handleAddCart}>
+					<S.ProductCartButton
+						onClick={() => {
+							handleAddCart(product);
+						}}
+					>
 						장바구니 담기
 					</S.ProductCartButton>
-					<p>21.90$</p>
+					<p>{product?.price}$</p>
 				</S.SubButtonText>
 			</S.ProductBox>
 		</>
@@ -23,13 +36,13 @@ export default OneProduct;
 const ProductBox = styled.div`
 	background-color: #e9ecef;
 	${flexCenter}
-	${flexColumn}}
+	${flexColumn}
 	width: 260px;
 	padding: 20px 20px 5px 20px;
 	border: 1px solid ${({ theme }) => theme.PALETTE["darkBlack"]};
 	cursor: pointer;
 	img {
-		width: 200px;
+		width: 100px;
 	}
 `;
 

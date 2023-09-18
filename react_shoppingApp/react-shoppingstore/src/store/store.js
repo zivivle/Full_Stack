@@ -6,7 +6,7 @@ const cart = createSlice({
 	reducers: {
 		addCart(state, action) {
 			const existingProduct = state.find(
-				product => product.name === action.payload.name,
+				product => product.title === action.payload.title,
 			);
 			if (existingProduct) {
 				existingProduct.count += 1;
@@ -16,11 +16,11 @@ const cart = createSlice({
 			}
 		},
 		deleteCart(state, action) {
-			return state.filter(product => product.name !== action.payload.name);
+			return state.filter(product => product.title !== action.payload.title);
 		},
 		incrementItemCount(state, action) {
 			const existingProduct = state.find(
-				product => product.name === action.payload.name,
+				product => product.title === action.payload.title,
 			);
 			if (existingProduct) {
 				existingProduct.count += 1;
@@ -28,7 +28,7 @@ const cart = createSlice({
 		},
 		decrementItemCount(state, action) {
 			const existingProduct = state.find(
-				product => product.name === action.payload.name,
+				product => product.title === action.payload.title,
 			);
 			if (existingProduct && existingProduct.count > 1) {
 				existingProduct.count -= 1;

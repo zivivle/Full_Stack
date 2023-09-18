@@ -1,15 +1,45 @@
 import styled from "styled-components";
 import { flexCenter } from "../../../../styles/common";
 
-const MainTabs = () => {
+const MainTabs = ({ handleProductsFilter }) => {
 	return (
 		<>
 			<S.TabsContainer>
-				<S.Tab>모두</S.Tab>
-				<S.Tab>전자기기</S.Tab>
-				<S.Tab>쥬얼리</S.Tab>
-				<S.Tab>남성의류</S.Tab>
-				<S.Tab>여성의류</S.Tab>
+				<S.Tab
+					onClick={() => {
+						handleProductsFilter("All");
+					}}
+				>
+					모두
+				</S.Tab>
+				<S.Tab
+					onClick={() => {
+						handleProductsFilter("electronics");
+					}}
+				>
+					전자기기
+				</S.Tab>
+				<S.Tab
+					onClick={() => {
+						handleProductsFilter("jewelery");
+					}}
+				>
+					쥬얼리
+				</S.Tab>
+				<S.Tab
+					onClick={() => {
+						handleProductsFilter(`men's clothing`);
+					}}
+				>
+					남성의류
+				</S.Tab>
+				<S.Tab
+					onClick={() => {
+						handleProductsFilter(`women's clothing`);
+					}}
+				>
+					여성의류
+				</S.Tab>
 			</S.TabsContainer>
 		</>
 	);

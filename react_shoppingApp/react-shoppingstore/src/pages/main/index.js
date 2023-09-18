@@ -3,26 +3,58 @@ import MainTabs from "./components/tabs/Tabs";
 import OneProduct from "./components/one-product/OneProduct";
 import { useDispatch } from "react-redux";
 import { addCart } from "../../store/store";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const Main = () => {
-	const productInfo = {
-		name: "상품 이름",
-		price: 21.9,
-		image: "/img/hello.png",
+	const getProductData = async () => {
+		return await (await fetch("https://fakestoreapi.com/products")).json();
 	};
 
+	const [filteredProduct, setFilteredProduct] = useState([]);
+
+	const { data, isLoading, error } = useQuery(["product"], getProductData);
+
+	useEffect(() => {
+		if (data) {
+			setFilteredProduct(data);
+		}
+	}, [data]);
+
 	const dispatch = useDispatch();
-	const handleAddCart = () => {
-		dispatch(addCart(productInfo));
+
+	const handleAddCart = product => {
+		dispatch(addCart(product));
 	};
+
+	const handleProductsFilter = field => {
+		if (field === "All") {
+			console.log("filteredProduct", filteredProduct);
+			return setFilteredProduct(data);
+		} else {
+			const filteredItem = data
+				? data.filter(product => product.category === field)
+				: [];
+			setFilteredProduct(filteredItem);
+			console.log("filteredProduct", filteredProduct);
+		}
+	};
+
 	return (
 		<>
 			<S.MainContainer>
 				<S.MainTitle>Products</S.MainTitle>
-				<MainTabs />
+				<MainTabs handleProductsFilter={handleProductsFilter} />
 				<S.InfoText>showing: 20 items</S.InfoText>
 				<S.ProductContainer>
-					<OneProduct handleAddCart={handleAddCart} />
+					{filteredProduct &&
+						filteredProduct.map(product => (
+							<OneProduct
+								key={product.id}
+								product={product}
+								handleAddCart={handleAddCart}
+							/>
+						))}
 				</S.ProductContainer>
 			</S.MainContainer>
 		</>
@@ -54,9 +86,9 @@ const ProductContainer = styled.div`
 	padding: 20px;
 	margin-bottom: 20px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-	display: flex; /* 플렉스박스 레이아웃을 사용 */
-	flex-wrap: wrap; /* 아이템들이 컨테이너 너비를 초과할 경우 다음 행으로 감싸짐 */
-	justify-content: space-between; /* 아이템들 사이의 간격을 균등하게 설정 */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	gap: 20px;
 `;
 

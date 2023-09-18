@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { flexCenter } from "../../styles/common";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ProductDetail = () => {
+	const { state } = useLocation();
+	console.log("state", state.selectedProduct);
 	const navigate = useNavigate();
 	return (
 		<S.DetailContainer>
-			<S.ProductImage src="/img/hello.png" alt="Product Image" />
+			<S.ProductImage src={state?.selectedProduct.image} alt="Product Image" />
 			<S.ProductInfo>
-				<S.ProductCategory>전자기기</S.ProductCategory>
-				<S.ProductName>제품 이름</S.ProductName>
-				<S.ProductPrice>$100.00</S.ProductPrice>
+				<S.ProductCategory>{state?.selectedProduct.category}</S.ProductCategory>
+				<S.ProductName>{state?.selectedProduct.title}</S.ProductName>
+				<S.ProductPrice>{state?.selectedProduct.price}$</S.ProductPrice>
 				<S.ProductDetailText>
-					상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명
+					{state?.selectedProduct.description}
 				</S.ProductDetailText>
 				<div>
 					<S.AddToCartButton>장바구니에 담기</S.AddToCartButton>
