@@ -7,6 +7,11 @@
 
  <p align="middle">리액트를 이용해 쇼핑몰 앱을 만들어 보았습니다. </p>
 
+ <img src="https://github.com/zivivle/Full_Stack/assets/123868471/1b34bb38-a11a-4d89-ad4f-e80fcdddc1aa"/>
+ <img src="https://github.com/zivivle/Full_Stack/assets/123868471/c287eec6-37d1-4cc0-9ba5-8a302932fc9a"/>
+ <img src="https://github.com/zivivle/Full_Stack/assets/123868471/9a4c54e2-232c-4d1b-bf56-afbbab76feb1"/>
+
+
 </div>
 
 <summary><h2>📂 파일 구조</h2></summary>
@@ -76,11 +81,12 @@
   - 아래 참고용 이미지를 참고하여 페이지를 구현하였습니다.
   <br>
   <br>
-  <img src="#">
+  <img src="https://lh6.googleusercontent.com/YuF-gbxvaHr_o2IeYX_i4Y_GYfnuv7Ue1V9mRk4ZltJSWmGRhG49k1xgg6psmIN79ubxsOCZJjILqT2pRCLLUDLZ1KoA3koxvYpfJx6fYs3clS0ZJTqm9P9HMyS2MrZe-Aryvp_wGuEOMEinb-iA3CI"/>
 
 </div>
 </detail>
-
+<br>
+  <br>
 <detail open>
 <summary> 2. rtk 상태 관리 라이브러리를 사용하였습니다. </summary>
 <div markdown="1">
