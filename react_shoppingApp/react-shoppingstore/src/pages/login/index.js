@@ -11,16 +11,11 @@ const LoginPage = () => {
 
 	const login = async () => {
 		try {
-			const userCredential = await signInWithEmailAndPassword(
-				auth,
-				emailValue,
-				passwordValue,
-			);
+			await signInWithEmailAndPassword(auth, emailValue, passwordValue);
 			alert("로그인이 완료되었습니다.");
 			setTimeout(() => {
 				navigate("/product");
 			}, 1000);
-			console.log("로그인 성공", userCredential);
 		} catch (error) {
 			console.log(error.message);
 		}

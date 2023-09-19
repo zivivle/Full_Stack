@@ -29,14 +29,12 @@ const Main = () => {
 
 	const handleProductsFilter = field => {
 		if (field === "All") {
-			console.log("filteredProduct", filteredProduct);
 			return setFilteredProduct(data);
 		} else {
 			const filteredItem = data
 				? data.filter(product => product.category === field)
 				: [];
 			setFilteredProduct(filteredItem);
-			console.log("filteredProduct", filteredProduct);
 		}
 	};
 

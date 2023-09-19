@@ -11,12 +11,11 @@ const SignupPage = () => {
 
 	const register = async () => {
 		try {
-			const user = await createUserWithEmailAndPassword(
+			await createUserWithEmailAndPassword(
 				auth,
 				registerEmail,
 				registerPassword,
 			);
-			console.log(user);
 			alert("회원가입이 완료되었습니다.");
 			setTimeout(() => {
 				navigate("/");

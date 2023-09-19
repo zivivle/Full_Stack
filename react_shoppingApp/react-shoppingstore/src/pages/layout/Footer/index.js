@@ -4,7 +4,6 @@ const Footer = () => {
 	return (
 		<>
 			<S.FooterContainer>
-				{/* img 너무큼 수정바람 */}
 				<S.FooterImg src="/img/hello.png" />
 				<S.FooterLink>
 					<p>© 2023 Hello store. All rights reserved.</p> <p>Privacy Policy</p>{" "}

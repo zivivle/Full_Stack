@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { flexCenter } from "../../styles/common";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "../../store/store";
 
 const ProductDetail = () => {
+	const dispatch = useDispatch();
+	const handleAddCart = product => {
+		dispatch(addCart(product));
+	};
 	const { state } = useLocation();
-	console.log("state", state.selectedProduct);
 	const navigate = useNavigate();
 	return (
 		<S.DetailContainer>
@@ -17,7 +22,13 @@ const ProductDetail = () => {
 					{state?.selectedProduct.description}
 				</S.ProductDetailText>
 				<div>
-					<S.AddToCartButton>장바구니에 담기</S.AddToCartButton>
+					<S.AddToCartButton
+						onClick={() => {
+							handleAddCart(state?.selectedProduct);
+						}}
+					>
+						장바구니에 담기
+					</S.AddToCartButton>
 					<S.GoToCartButton
 						onClick={() => {
 							navigate("/cart");
