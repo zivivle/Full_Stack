@@ -1,11 +1,11 @@
-<h1 align="middle">React를 이용해 CRUD 앱 만들기</h1>
+<h1 align="middle">React를 이용해 쇼핑몰 앱 만들기</h1>
 </p><br>
 
 <div align="center">
   
   <h1>📑 프로젝트 소개 및 개요</h1>
 
- <p align="middle">리액트를 이용해서 CRUD 앱을 만들어 보았습니다. </p>
+ <p align="middle">리액트를 이용해 쇼핑몰 앱을 만들어 보았습니다. </p>
 
 </div>
 
@@ -15,25 +15,43 @@
 ```
 ├─public
 │  └─img
-├─pages
-│  └─Layout.js
-│  └─main
-│     └─index.js
-│     └─componentes
-│         └─Button
-│         │   └─index.js
-│         └─EventNotification
-│         │   └─index.js
-│         └─Input
-│         │   └─index.js
-│         └─Lists
-│             └─index.js
-├─routes
-│  └─Routing.js
-└─style
-│  └─common.js
-│  └─global.js
-│  └─theme.js
+├─src
+│  └─apis
+│  │ └─firebase_config.js
+│  └─pages
+│  │  └─cart
+│  │  │  └─components
+│  │  │  │  └─one-list
+│  │  │  │     └─OneProductList.js
+│  │  │  └─index.js
+│  │  └─layout
+│  │  │  └─Footer
+│  │  │  │  └─index.js
+│  │  │  └─Header
+│  │  │  │  └─index.js
+│  │  │  └─index.js
+│  │  └─login
+│  │  │  └─index.js
+│  │  └─main
+│  │  │  └─components
+│  │  │  │  └─one-product
+│  │  │  │  │  └─OneProduct.js
+│  │  │  │  └─tabs
+│  │  │  │     └─Tabs.js
+│  │  │  └─index.js
+│  │  └─product-detail
+│  │  │  └─index.js
+│  │  └─signup
+│  │     └─index.js
+│  └─routes
+│  │  └─ProtectedRoute.js
+│  │  └─Routing.js
+│  └─stroe
+│  │  └─stroe.js
+│  └─styles
+│     └─common.js
+│     └─global.js
+│     └─theme.js
 ├─App.js
 ├─App.css
 ```
@@ -58,19 +76,39 @@
   - 아래 참고용 이미지를 참고하여 페이지를 구현하였습니다.
   <br>
   <br>
-  
-<img width="612" alt="스크린샷 2023-08-29 오전 10 45 37" src="https://lh6.googleusercontent.com/N15JXjT7LWgOsvZ0X6WI-kB7n6dhkNiXTfnBaCRyILA7bwoZVq4v_VBIWaVsxZslMQK2YjzJZR0QQRGFhAyROhDA2OBl6VGFL9Z4vRXMuIOKWRxVH6-rilHSEve4S3cjjETOqIAB5iGYlsnH7gLV7aA">
+  <img src="#">
 
 </div>
 </detail>
 
-<summary> 2. 최대한 컴포넌트를 나눠서 구현하였습니다. </summary>
+<detail open>
+<summary> 2. rtk 상태 관리 라이브러리를 사용하였습니다. </summary>
 <div markdown="1">
-</div>
+  <br>
+  
+  <br>
+  <br>
 
-<summary> 3. 폴더 이름 및 변수 이름을 명확하게 작성하였습니다. </summary>
+</div>
+</detail>
+
+<detail open>
+<summary> 3. 로그인은 파이어베이스의 인증 서비스를 이용하였습니다. </summary>
 <div markdown="1">
-<br>
-<br>
+  <br>
+
+  <br>
+  <br>
 
 </div>
+</detail>
+
+<summary> 4. 타입스크립트로 마이그레이션 예정입니다. </summary>
+<div markdown="1">
+  <br>
+
+  <br>
+  <br>
+
+</div>
+</detail>
