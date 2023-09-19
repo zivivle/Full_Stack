@@ -11,7 +11,6 @@
  <img src="https://github.com/zivivle/Full_Stack/assets/123868471/c287eec6-37d1-4cc0-9ba5-8a302932fc9a"/>
  <img src="https://github.com/zivivle/Full_Stack/assets/123868471/9a4c54e2-232c-4d1b-bf56-afbbab76feb1"/>
 
-
 </div>
 
 <summary><h2>📂 파일 구조</h2></summary>
@@ -109,7 +108,7 @@
 </div>
 </detail>
 
-<summary> 4. 타입스크립트로 마이그레이션 예정입니다. </summary>
+<summary> 4. 타입스크립트로 마이그레이션 완료 </summary>
 <div markdown="1">
   <br>
 
