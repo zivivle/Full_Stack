@@ -8,20 +8,20 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function App() {
-	const queryClient = new QueryClient();
-	return (
-		<>
-			<Provider store={store}>
-				<ThemeProvider theme={theme}>
-					<GlobalStyles />
-					<QueryClientProvider client={queryClient}>
-						<RouterProvider router={router} />
-					</QueryClientProvider>
-				</ThemeProvider>
-			</Provider>
-		</>
-	);
+function App(): JSX.Element {
+  const queryClient = new QueryClient();
+  return (
+    <>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </ThemeProvider>
+      </Provider>
+    </>
+  );
 }
 
 export default App;
