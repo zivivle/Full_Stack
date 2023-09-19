@@ -21,7 +21,11 @@ const OneProduct = ({
   return (
     <>
       <S.ProductBox>
-        <img src={product?.image} onClick={hadlePassProductData} />
+        <img
+          src={product?.image}
+          onClick={hadlePassProductData}
+          alt="상품이미지"
+        />
         <S.ProductTitle onClick={hadlePassProductData}>
           {product?.title}
         </S.ProductTitle>
