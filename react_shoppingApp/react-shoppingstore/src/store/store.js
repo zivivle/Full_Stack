@@ -12,7 +12,6 @@ const cart = createSlice({
 				existingProduct.count += 1;
 			} else {
 				state.push({ ...action.payload, count: 1 });
-				console.log("state", state.count);
 			}
 		},
 		deleteCart(state, action) {
@@ -36,7 +35,6 @@ const cart = createSlice({
 		},
 	},
 });
-console.log("cart", cart);
 
 export default configureStore({
 	reducer: {

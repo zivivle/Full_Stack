@@ -44,16 +44,22 @@ const Main = () => {
 				<S.MainTitle>Products</S.MainTitle>
 				<MainTabs handleProductsFilter={handleProductsFilter} />
 				<S.InfoText>showing: 20 items</S.InfoText>
-				<S.ProductContainer>
-					{filteredProduct &&
-						filteredProduct.map(product => (
-							<OneProduct
-								key={product.id}
-								product={product}
-								handleAddCart={handleAddCart}
-							/>
-						))}
-				</S.ProductContainer>
+				{isLoading ? (
+					<>
+						<img src="/img/loading.gif" alt="로딩아이콘" />
+					</>
+				) : (
+					<S.ProductContainer>
+						{filteredProduct &&
+							filteredProduct.map(product => (
+								<OneProduct
+									key={product.id}
+									product={product}
+									handleAddCart={handleAddCart}
+								/>
+							))}
+					</S.ProductContainer>
+				)}
 			</S.MainContainer>
 		</>
 	);

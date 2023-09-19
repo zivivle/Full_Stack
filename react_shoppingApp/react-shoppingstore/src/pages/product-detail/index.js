@@ -11,6 +11,7 @@ const ProductDetail = () => {
 	};
 	const { state } = useLocation();
 	const navigate = useNavigate();
+
 	return (
 		<S.DetailContainer>
 			<S.ProductImage src={state?.selectedProduct.image} alt="Product Image" />
