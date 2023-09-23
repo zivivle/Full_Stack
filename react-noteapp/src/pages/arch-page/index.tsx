@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
 import SubMainHeader from "../../components/Headers/SubMainHeader";
 import Nav from "../../components/Nav";
 import NoteCard from "../../components/NoteCard";
-import { RootState } from "../../types/reduxTypes";
 import { useEffect, useState } from "react";
 import { NoteDateType } from "../../types/noteDateTypes";
 import { flexColumn, flexRow } from "../../styles/common";
 import styled from "styled-components";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const ArchivePage = (): JSX.Element => {
-  const noteData = useSelector((state: RootState) => state.note);
+  const noteData = useAppSelector((state) => state.note);
   const [archiveNotes, setArchiveNotes] = useState<NoteDateType[]>([]);
 
   useEffect(() => {

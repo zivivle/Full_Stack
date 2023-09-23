@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
 import SubMainHeader from "../../components/Headers/SubMainHeader";
 import Nav from "../../components/Nav";
-import { RootState } from "../../types/reduxTypes";
 import styled from "styled-components";
 import { flexColumn, flexRow } from "../../styles/common";
 import NoteCard from "../../components/NoteCard";
 import { useEffect, useState } from "react";
 import { NoteDateType } from "../../types/noteDateTypes";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const Trash = (): JSX.Element => {
-  const noteData = useSelector((state: RootState) => state.note);
+  const noteData = useAppSelector((state) => state.note);
   const [deleteNotes, setDeleteNotes] = useState<NoteDateType[]>([]);
 
   useEffect(() => {

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { flexColumn, flexRow } from "../../styles/common";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import EditTagModal from "../EditTagModal";
+import { useAppSelector } from "../../hooks/useRedux";
 
-interface NavProps {
-  setIsModalOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Nav = ({ setIsModalOpen }: NavProps) => {
+const Nav = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const tagData = useAppSelector((state) => state.tag);
 
   const handleModalState = () => {
     if (setIsModalOpen) {
@@ -20,6 +21,7 @@ const Nav = ({ setIsModalOpen }: NavProps) => {
   };
   return (
     <>
+      {isModalOpen ? <EditTagModal setIsModalOpen={setIsModalOpen} /> : null}
       <S.MainContainer>
         <S.Header>
           <h1>Keep</h1>
@@ -34,6 +36,17 @@ const Nav = ({ setIsModalOpen }: NavProps) => {
             <img src="#" alt="❗️" />
             <h2>Note</h2>
           </S.NavContainer>
+          {tagData?.map((tags, index) => (
+            <S.NavContainer
+              key={index}
+              onClick={() => {
+                handleNavigate("/");
+              }}
+            >
+              <img src="#" alt="📕" />
+              <h2>{tags}</h2>
+            </S.NavContainer>
+          ))}
           <S.NavContainer onClick={handleModalState}>
             <img src="#" alt="♫" />
             <h2>Edit Notes</h2>

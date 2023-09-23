@@ -6,28 +6,27 @@ import { flexColumn, flexRow } from "../../styles/common";
 import NoteCard from "../../components/NoteCard";
 import AddNoteModal from "../../components/AddNoteModal";
 import FilterModal from "../../components/FilterModal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../types/reduxTypes";
 import { NoteDateType } from "../../types/noteDateTypes";
-import EditTagModal from "../../components/EditTagModal";
 import EditNoteModal from "../../components/EditNoteModal";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const Main = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [pined, setPined] = useState<boolean>(false);
   const [archive, setArchive] = useState<boolean>(false);
   const [deleteData, setDeleteData] = useState<boolean>(false);
-  const [tags, setTags] = useState<string[]>([]);
   const [pinedNote, setPinedNote] = useState<NoteDateType[]>([]);
   const [unPinedNote, setUnPinedNote] = useState<NoteDateType[]>([]);
   const [selectedEditNote, setSelectedEditNote] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState("");
+  const [filteredUnPinedNote, setFilteredUnPinedNote] = useState<
+    NoteDateType[]
+  >([]);
 
-  const noteData = useSelector((state: RootState) => state.note);
+  const noteData = useAppSelector((state) => state.note);
   console.log("noteData", noteData);
-  console.log("selectedEditNote", selectedEditNote);
 
   const handleFilterModalOpen = () => {
     setIsFilterModalOpen(true);
@@ -52,9 +51,16 @@ const Main = (): JSX.Element => {
     setUnPinedNote(filteredDeleteUnPinedUnArchiveNotes);
   }, [noteData]);
 
+  useEffect(() => {
+    const filteredNotes = unPinedNote.filter((note) =>
+      note.title.toLowerCase().includes(searchInputValue.toLowerCase())
+    );
+    setFilteredUnPinedNote(filteredNotes);
+  }, [searchInputValue, unPinedNote]);
+
   return (
     <S.Container>
-      <Nav setIsModalOpen={setIsModalOpen} />
+      <Nav />
       {isEditModalOpen ? (
         <EditNoteModal
           setIsEditModalOpen={setIsEditModalOpen}
@@ -62,23 +68,31 @@ const Main = (): JSX.Element => {
         />
       ) : null}
       {isFilterModalOpen ? (
-        <FilterModal setIsFilterModalOpen={setIsFilterModalOpen} />
+        <FilterModal
+          setIsFilterModalOpen={setIsFilterModalOpen}
+          noteData={noteData}
+        />
       ) : null}
       {isAddModalOpen ? (
         <AddNoteModal
           setIsAddModalOpen={setIsAddModalOpen}
           pined={pined}
           archive={archive}
-          tags={tags}
           deleteData={deleteData}
         />
       ) : null}
-      {isModalOpen ? <EditTagModal setIsModalOpen={setIsModalOpen} /> : null}
+
       <div>
         <EditMainHeader setIsAddModalOpen={setIsAddModalOpen} />
         <S.Content>
           <S.SearchBar>
-            <S.SearchInput placeholder="노트의 제목을 입력해주세요" />
+            <S.SearchInput
+              placeholder="노트의 제목을 입력해주세요"
+              value={searchInputValue}
+              onChange={(e) => {
+                setSearchInputValue(e.target.value);
+              }}
+            />
             <S.FilterButton onClick={handleFilterModalOpen}>
               filter
             </S.FilterButton>
@@ -99,7 +113,7 @@ const Main = (): JSX.Element => {
           <S.NotesSection>
             <S.NotesTitle>All Notes ({unPinedNote?.length})</S.NotesTitle>
             <S.NoteCardWrapper>
-              {unPinedNote?.map((note) => (
+              {filteredUnPinedNote?.map((note) => (
                 <NoteCard
                   key={note.id}
                   note={note}

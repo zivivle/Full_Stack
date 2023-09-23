@@ -1,23 +1,85 @@
 import styled from "styled-components";
 import { flexRow } from "../../styles/common";
+import { useEffect, useState } from "react";
+import { NoteDateType } from "../../types/noteDateTypes";
+import { useDispatch } from "react-redux";
+import { filteredNoteList } from "../../reducers/noteReducer";
 
 interface FilterModalProps {
   setIsFilterModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  noteData: NoteDateType[];
 }
 
-const FilterModal = ({ setIsFilterModalOpen }: FilterModalProps) => {
+interface CheckboxStates {
+  lowToHigh: boolean;
+  highToLow: boolean;
+  sortByLatest: boolean;
+  sortByCreated: boolean;
+  sortByEdited: boolean;
+}
+
+interface CustomCheckboxProps {
+  isChecked: boolean;
+}
+
+const FilterModal = ({ setIsFilterModalOpen, noteData }: FilterModalProps) => {
+  const initialCheckboxStates: CheckboxStates = {
+    lowToHigh: false,
+    highToLow: false,
+    sortByLatest: false,
+    sortByCreated: false,
+    sortByEdited: false,
+  };
+
+  const [checkboxStates, setCheckboxStates] = useState(initialCheckboxStates);
+  const dispatch = useDispatch();
+
   const handleFilterModalClose = () => {
     if (setIsFilterModalOpen) {
       setIsFilterModalOpen(false);
     }
   };
+
+  const hadlefilterClear = () => {
+    dispatch(filteredNoteList("clear"));
+    setCheckboxStates(initialCheckboxStates);
+  };
+
+  const handleFilterData = (field: keyof CheckboxStates) => {
+    const updatedCheckboxStates = { ...initialCheckboxStates };
+    updatedCheckboxStates[field] = true;
+    setCheckboxStates(updatedCheckboxStates);
+  };
+
+  useEffect(() => {
+    if (checkboxStates.sortByLatest) {
+      dispatch(filteredNoteList("sortByLatest"));
+    }
+
+    if (checkboxStates.sortByCreated) {
+      dispatch(filteredNoteList("sortByCreated"));
+    }
+
+    if (checkboxStates.sortByEdited) {
+      dispatch(filteredNoteList("sortByEdited"));
+    }
+
+    if (checkboxStates.highToLow) {
+      dispatch(filteredNoteList("highToLow"));
+    }
+
+    if (checkboxStates.lowToHigh) {
+      dispatch(filteredNoteList("lowToHigh"));
+    }
+  }, [checkboxStates, dispatch]);
+
   return (
     <S.ModalWrapper>
       <S.ModalContainer>
         <S.ModalHeader>
           <h3>정렬</h3>
           <S.IconBox>
-            <p>clear</p>
+            <p onClick={hadlefilterClear}>clear</p>
             <S.Icon
               src="#"
               alt="창 종료 아이콘"
@@ -29,11 +91,21 @@ const FilterModal = ({ setIsFilterModalOpen }: FilterModalProps) => {
           <h5>PRIORITY</h5>
           <S.CheckboxWrapper>
             <S.CustomCheckboxWrapper>
-              <S.CustomCheckbox />
+              <S.CustomCheckbox
+                isChecked={checkboxStates.lowToHigh}
+                onClick={() => {
+                  handleFilterData("lowToHigh");
+                }}
+              />
               <p>Low to High</p>
             </S.CustomCheckboxWrapper>
             <S.CustomCheckboxWrapper>
-              <S.CustomCheckbox />
+              <S.CustomCheckbox
+                isChecked={checkboxStates.highToLow}
+                onClick={() => {
+                  handleFilterData("highToLow");
+                }}
+              />
               <p>High to Low</p>
             </S.CustomCheckboxWrapper>
           </S.CheckboxWrapper>
@@ -42,15 +114,30 @@ const FilterModal = ({ setIsFilterModalOpen }: FilterModalProps) => {
           <h5>DATE</h5>
           <S.CheckboxWrapper>
             <S.CustomCheckboxWrapper>
-              <S.CustomCheckbox />
+              <S.CustomCheckbox
+                isChecked={checkboxStates.sortByLatest}
+                onClick={() => {
+                  handleFilterData("sortByLatest");
+                }}
+              />
               <p>Sort by Latest</p>
             </S.CustomCheckboxWrapper>
             <S.CustomCheckboxWrapper>
-              <S.CustomCheckbox />
+              <S.CustomCheckbox
+                isChecked={checkboxStates.sortByCreated}
+                onClick={() => {
+                  handleFilterData("sortByCreated");
+                }}
+              />
               <p>Sort by Created</p>
             </S.CustomCheckboxWrapper>
             <S.CustomCheckboxWrapper>
-              <S.CustomCheckbox />
+              <S.CustomCheckbox
+                isChecked={checkboxStates.sortByEdited}
+                onClick={() => {
+                  handleFilterData("sortByEdited");
+                }}
+              />
               <p>Sort by Edited</p>
             </S.CustomCheckboxWrapper>
           </S.CheckboxWrapper>
@@ -114,13 +201,14 @@ const CustomCheckboxWrapper = styled.div`
   ${flexRow}
 `;
 
-const CustomCheckbox = styled.div`
-  width: 20px;
-  height: 20px;
+const CustomCheckbox = styled.div<CustomCheckboxProps>`
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: 1px solid #e0e0e0;
+  background-color: ${(props) => (props.isChecked ? "#a0a0a0" : "white")};
   cursor: pointer;
-
+  margin-right: 10px;
   &:hover {
     border-color: #a0a0a0;
   }

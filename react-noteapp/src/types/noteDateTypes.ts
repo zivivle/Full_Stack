@@ -3,6 +3,7 @@ export type NoteDateType = {
   title: string;
   content: string;
   date: string;
+  editDate: string;
   backgroundColor: string;
   priority: string;
   tags: string[];

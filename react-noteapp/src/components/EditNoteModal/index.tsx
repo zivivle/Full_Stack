@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { flexRow } from "../../styles/common";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../types/reduxTypes";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { NoteDateType } from "../../types/noteDateTypes";
-import { editNoteList } from "../../stroe/store";
+import { editNoteList, editNoteTagDelete } from "../../reducers/noteReducer";
+import { useAppSelector } from "../../hooks/useRedux";
+import { deleteTag } from "../../reducers/tagReducer";
 
 interface EditNoteModalProps {
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +24,7 @@ const EditNoteModal = ({
   const [priority, setPriority] = useState<string>("low");
   const dispatch = useDispatch();
 
-  const noteData = useSelector((state: RootState) => state.note);
+  const noteData = useAppSelector((state) => state.note);
 
   useEffect(() => {
     const selectData = noteData.filter((note) => note.id === selectedEditNote);
@@ -48,6 +49,7 @@ const EditNoteModal = ({
       title: title,
       content: content,
       date: filteredNoteData?.date || "",
+      editDate: new Date().toString(),
       backgroundColor: backgroundColor,
       priority: priority,
       tags: filteredNoteData?.tags || [],
@@ -56,6 +58,10 @@ const EditNoteModal = ({
       deleteData: filteredNoteData?.deleteData || false,
     };
     dispatch(editNoteList(chageNote));
+  };
+
+  const handleDeleteTag = (tag: string) => {
+    dispatch(editNoteTagDelete({ noteId: selectedEditNote, tag }));
   };
 
   return (
@@ -93,6 +99,18 @@ const EditNoteModal = ({
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </S.Editor>
+        {filteredNoteData?.tags.map((tag) => (
+          <>
+            <div>{tag}</div>
+            <button
+              onClick={() => {
+                handleDeleteTag(tag);
+              }}
+            >
+              x
+            </button>
+          </>
+        ))}
         <S.Options>
           <S.BasicButton>Add Tag</S.BasicButton>
           <S.SelectBox>

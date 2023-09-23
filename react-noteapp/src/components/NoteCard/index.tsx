@@ -6,7 +6,11 @@ import {
   archiveNoteList,
   deleteNoteList,
   pinedNoteList,
-} from "../../stroe/store";
+} from "../../reducers/noteReducer";
+
+interface CardContainerProps {
+  backgroundColor?: string;
+}
 
 interface NoteCardProps {
   note: NoteDateType;
@@ -40,9 +44,27 @@ const NoteCard = ({
     }
   };
 
+  function formatCurrentDate(note: { date: string }) {
+    const now = new Date(note.date);
+    // 년, 월, 일 포맷
+    const year = now.getFullYear().toString().slice(-2); // 년도의 마지막 두 자리
+    const month = (now.getMonth() + 1).toString().padStart(2, "0"); // 월 (0부터 시작하므로 1을 더해줌)
+    const day = now.getDate().toString().padStart(2, "0"); // 일
+
+    // 시간과 분 포맷
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    if (hours > 12) hours = hours - 12; // 12시간 형식으로 변경
+    if (hours === 0) hours = 12; // 0시는 12AM
+
+    return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+  }
+
   return (
     <>
-      <S.CardContainer>
+      <S.CardContainer backgroundColor={note.backgroundColor}>
         <S.Header>
           <S.Title>{note.title}</S.Title>
           <S.SubTitle>
@@ -61,7 +83,7 @@ const NoteCard = ({
           ))}
         </S.Tags>
         <S.Footer>
-          <S.Timestamp>{note.date}</S.Timestamp>
+          <S.Timestamp>{formatCurrentDate(note)}</S.Timestamp>
           <S.Actions>
             <S.Icon
               src="#"
@@ -90,17 +112,17 @@ const NoteCard = ({
 };
 export default NoteCard;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<CardContainerProps>`
   width: 25vw;
   height: 28vh;
   border: 1px solid #e0e0e0;
-  background-color: pink;
+  background-color: ${(props) => props.backgroundColor};
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   &:hover {
-    background-color: #ffd1d9;
+    background-color: #f7f7f7;
     cursor: pointer;
   }
 `;
